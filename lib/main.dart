@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
                   title: 'Aircon',
                   subTitle: 'Study Room',
                   icon: Icons.ac_unit,
-                  color: Colors.red,
+                  color: Colors.cyan,
                 ),
                 const Device(
                   title: 'Fan',
@@ -136,12 +136,18 @@ class _DeviceState extends State<Device> {
 
   @override
   Widget build(BuildContext context) {
-    Icon(
-      widget.icon,
-      color: _isEnabled ? widget.color : Colors.black38,
-      size: 50,
+    Text(
+      widget.title,
+      style: TextStyle(
+          color: _isEnabled ? Colors.white : Colors.black54,
+          fontSize: 25,
+          fontWeight: FontWeight.w600),
     );
-
+    Text(
+      widget.subTitle,
+      style: TextStyle(
+          color: _isEnabled ? Colors.white : Colors.black54, fontSize: 20),
+    );
     return Container(
       height: 180.0,
       width: 180.0,
@@ -174,8 +180,8 @@ class _DeviceState extends State<Device> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Icon(Icons.lightbulb,
-                  color: _isEnabled ? Colors.yellow : Colors.black54, size: 46),
+              Icon(widget.icon,
+                  color: _isEnabled ? widget.color : Colors.black54, size: 46),
               Switch(
                 value: _isEnabled,
                 onChanged: (newValue) {
@@ -188,14 +194,14 @@ class _DeviceState extends State<Device> {
           ),
           const SizedBox(height: 50),
           Text(
-            'Light',
+            widget.title,
             style: TextStyle(
                 color: _isEnabled ? Colors.white : Colors.black54,
                 fontSize: 21,
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            'Living Room',
+            widget.subTitle,
             style: TextStyle(
                 color: _isEnabled ? Colors.white : Colors.black54,
                 fontSize: 16),

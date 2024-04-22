@@ -28,6 +28,8 @@ class Device extends StatefulWidget {
 }
 
 class _DeviceState extends State<Device> {
+  bool _isEnabled = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +61,7 @@ class _DeviceState extends State<Device> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Icon(Icons.lightbulb, color: Colors.yellow, size: 46),
+              const Icon(Icons.lightbulb, color: Colors.yellow, size: 46),
               Switch(
                 value: true,
                 onChanged: (newValue) {},
@@ -67,12 +69,12 @@ class _DeviceState extends State<Device> {
             ],
           ),
           const SizedBox(height: 50),
-          Text(
+          const Text(
             'Light',
             style: TextStyle(
                 color: Colors.white, fontSize: 21, fontWeight: FontWeight.w500),
           ),
-          Text(
+          const Text(
             'Living Room',
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),

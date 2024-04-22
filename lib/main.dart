@@ -42,10 +42,7 @@ class _DeviceState extends State<Device> {
         gradient: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [
-            Color(0xffb3e5fc),
-            Color(0xff0288d1)
-          ], //0xFF is translucency last 6 is clr code
+          colors: [Color(0xffb3e5fc), Color(0xff0288d1)],
         ),
         boxShadow: const <BoxShadow>[
           BoxShadow(
@@ -61,7 +58,8 @@ class _DeviceState extends State<Device> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Icon(Icons.lightbulb, color: Colors.yellow, size: 46),
+              Icon(Icons.lightbulb,
+                  color: _isEnabled ? Colors.yellow : Colors.black54, size: 46),
               Switch(
                 value: _isEnabled,
                 onChanged: (newValue) {
@@ -73,14 +71,18 @@ class _DeviceState extends State<Device> {
             ],
           ),
           const SizedBox(height: 50),
-          const Text(
+          Text(
             'Light',
             style: TextStyle(
-                color: Colors.white, fontSize: 21, fontWeight: FontWeight.w500),
+                color: _isEnabled ? Colors.white : Colors.black54,
+                fontSize: 21,
+                fontWeight: FontWeight.w500),
           ),
-          const Text(
+          Text(
             'Living Room',
-            style: TextStyle(color: Colors.white, fontSize: 16),
+            style: TextStyle(
+                color: _isEnabled ? Colors.white : Colors.black54,
+                fontSize: 16),
           ),
         ],
       ),

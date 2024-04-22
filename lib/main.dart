@@ -20,83 +20,112 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Smart Home'),
-        ),
-        body: Column(
-          children: [
-            const Device(),
-            CheckboxListTile(
-              title: const Text('Default home?'),
-              controlAffinity: ListTileControlAffinity.leading,
-              value: _isDefault,
-              onChanged: (newValue) {
-                setState(() {
-                  _isDefault = newValue!;
-                });
-              },
-            ),
-            RadioListTile(
-              title: Text(rooms[0]),
-              value: rooms[0],
-              groupValue: _selectedRoom,
-              onChanged: (value) {
-                setState(() {
-                  _selectedRoom = value!;
-                });
-              },
-            ),
-            RadioListTile(
-              title: Text(rooms[1]),
-              value: rooms[1],
-              groupValue: _selectedRoom,
-              onChanged: (value) {
-                setState(() {
-                  _selectedRoom = value!;
-                });
-              },
-            ),
-            RadioListTile(
-              title: Text(rooms[2]),
-              value: rooms[2],
-              groupValue: _selectedRoom,
-              onChanged: (value) {
-                setState(() {
-                  _selectedRoom = value!;
-                });
-              },
-            ),
-            DropdownButton(
-              value: _selectedRoom,
-              items: [
-                DropdownMenuItem<String>(
+          appBar: AppBar(
+            title: const Text('Smart Home'),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Device(
+                  title: 'Light',
+                  subTitle: 'Living Room',
+                  icon: Icons.lightbulb,
+                  color: Colors.yellow,
+                ),
+                const Device(
+                  title: 'Aircon',
+                  subTitle: 'Study Room',
+                  icon: Icons.ac_unit,
+                  color: Colors.red,
+                ),
+                const Device(
+                  title: 'Fan',
+                  subTitle: 'Bedroom',
+                  icon: Icons.air,
+                  color: Colors.green,
+                ),
+                CheckboxListTile(
+                  title: const Text('Default home?'),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: _isDefault,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _isDefault = newValue!;
+                    });
+                  },
+                ),
+                RadioListTile(
+                  title: Text(rooms[0]),
                   value: rooms[0],
-                  child: Text(rooms[0]),
+                  groupValue: _selectedRoom,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedRoom = value!;
+                    });
+                  },
                 ),
-                DropdownMenuItem<String>(
+                RadioListTile(
+                  title: Text(rooms[1]),
                   value: rooms[1],
-                  child: Text(rooms[1]),
+                  groupValue: _selectedRoom,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedRoom = value!;
+                    });
+                  },
                 ),
-                DropdownMenuItem<String>(
+                RadioListTile(
+                  title: Text(rooms[2]),
                   value: rooms[2],
-                  child: Text(rooms[2]),
+                  groupValue: _selectedRoom,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedRoom = value!;
+                    });
+                  },
+                ),
+                DropdownButton(
+                  value: _selectedRoom,
+                  items: [
+                    DropdownMenuItem<String>(
+                      value: rooms[0],
+                      child: Text(rooms[0]),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: rooms[1],
+                      child: Text(rooms[1]),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: rooms[2],
+                      child: Text(rooms[2]),
+                    ),
+                  ],
+                  onChanged: (newValue) {
+                    setState(() {
+                      _selectedRoom = newValue!;
+                    });
+                  },
                 ),
               ],
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedRoom = newValue!;
-                });
-              },
             ),
-          ],
-        ),
-      ),
+          )),
     );
   }
 }
 
 class Device extends StatefulWidget {
-  const Device({super.key});
+  const Device({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.icon,
+    required this.color,
+  });
+
+  final String title;
+  final String subTitle;
+  final IconData icon;
+  final Color color;
 
   @override
   State<Device> createState() => _DeviceState();
@@ -107,6 +136,12 @@ class _DeviceState extends State<Device> {
 
   @override
   Widget build(BuildContext context) {
+    Icon(
+      widget.icon,
+      color: _isEnabled ? widget.color : Colors.black38,
+      size: 50,
+    );
+
     return Container(
       height: 180.0,
       width: 180.0,

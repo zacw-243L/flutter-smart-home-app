@@ -39,11 +39,17 @@ class _DeviceState extends State<Device> {
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [Color(0xffb3e5fc), Color(0xff0288d1)],
-        ),
+        gradient: _isEnabled
+            ? const LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Color(0xffb3e5fc), Color(0xff0288d1)],
+              )
+            : const LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Color(0xffffffff), Color(0xfffaf9f6)],
+              ),
         boxShadow: const <BoxShadow>[
           BoxShadow(
             blurRadius: 20,

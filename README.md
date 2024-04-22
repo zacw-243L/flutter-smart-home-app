@@ -1,1 +1,1 @@
-# flutter-smart-home-app
+# flutter smart home app

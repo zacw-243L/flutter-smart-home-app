@@ -13,6 +13,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isDefault = false;
+  List<String> rooms = ['Living Room', 'Bedroom', 'Kitchen'];
+  String _selectedRoom = 'Living Room';
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,58 @@ class _MyAppState extends State<MyApp> {
               onChanged: (newValue) {
                 setState(() {
                   _isDefault = newValue!;
+                });
+              },
+            ),
+            RadioListTile(
+              title: Text(rooms[0]),
+              value: rooms[0],
+              groupValue: _selectedRoom,
+              onChanged: (value) {
+                setState(() {
+                  _selectedRoom = value!;
+                });
+              },
+            ),
+            RadioListTile(
+              title: Text(rooms[1]),
+              value: rooms[1],
+              groupValue: _selectedRoom,
+              onChanged: (value) {
+                setState(() {
+                  _selectedRoom = value!;
+                });
+              },
+            ),
+            RadioListTile(
+              title: Text(rooms[2]),
+              value: rooms[2],
+              groupValue: _selectedRoom,
+              onChanged: (value) {
+                setState(() {
+                  _selectedRoom = value!;
+                });
+              },
+            ),
+            DropdownButton(
+              value: _selectedRoom,
+              items: [
+                DropdownMenuItem<String>(
+                  value: rooms[0],
+                  child: Text(rooms[0]),
+                ),
+                DropdownMenuItem<String>(
+                  value: rooms[1],
+                  child: Text(rooms[1]),
+                ),
+                DropdownMenuItem<String>(
+                  value: rooms[2],
+                  child: Text(rooms[2]),
+                ),
+              ],
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedRoom = newValue!;
                 });
               },
             ),

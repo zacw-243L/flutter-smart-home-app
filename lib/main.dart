@@ -63,8 +63,12 @@ class _DeviceState extends State<Device> {
             children: <Widget>[
               const Icon(Icons.lightbulb, color: Colors.yellow, size: 46),
               Switch(
-                value: true,
-                onChanged: (newValue) {},
+                value: _isEnabled,
+                onChanged: (newValue) {
+                  setState(() {
+                    _isEnabled = newValue;
+                  });
+                },
               ),
             ],
           ),

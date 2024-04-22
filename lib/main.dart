@@ -54,19 +54,28 @@ class _DeviceState extends State<Device> {
         ],
       ),
       child: Column(
-        children: [
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
           Row(
-            children: [
-              const Icon(Icons.lightbulb),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Icon(Icons.lightbulb, color: Colors.yellow, size: 46),
               Switch(
                 value: true,
                 onChanged: (newValue) {},
-              )
+              ),
             ],
           ),
           const SizedBox(height: 50),
-          const Text('Light'),
-          const Text('Living Room'),
+          Text(
+            'Light',
+            style: TextStyle(
+                color: Colors.white, fontSize: 21, fontWeight: FontWeight.w500),
+          ),
+          Text(
+            'Living Room',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
         ],
       ),
     );

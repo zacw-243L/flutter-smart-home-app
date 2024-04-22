@@ -4,8 +4,15 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isDefault = false;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,21 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Smart Home'),
         ),
-        body: const Device(),
+        body: Column(
+          children: [
+            const Device(),
+            CheckboxListTile(
+              title: const Text('Default home?'),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: _isDefault,
+              onChanged: (newValue) {
+                setState(() {
+                  _isDefault = newValue!;
+                });
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

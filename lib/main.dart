@@ -32,18 +32,30 @@ class _MyAppState extends State<MyApp> {
                   subTitle: 'Living Room',
                   icon: Icons.lightbulb,
                   color: Colors.yellow,
+                  gradientBeginColor: Color(0xffb3e5fc),
+                  gradientEndColor: Color(0xff0288d1),
+                  disabledGradientBeginColor: Color(0xffe0e0e0),
+                  disabledGradientEndColor: Color(0xffc8c8c8),
                 ),
                 const Device(
                   title: 'Aircon',
                   subTitle: 'Study Room',
                   icon: Icons.ac_unit,
                   color: Colors.cyan,
+                  gradientBeginColor: Color(0xffb3e5fc),
+                  gradientEndColor: Color(0xff0288d1),
+                  disabledGradientBeginColor: Color(0xffe0e0e0),
+                  disabledGradientEndColor: Color(0xffc8c8c8),
                 ),
                 const Device(
                   title: 'Fan',
                   subTitle: 'Bedroom',
                   icon: Icons.air,
                   color: Colors.green,
+                  gradientBeginColor: Color(0xff4caf50),
+                  gradientEndColor: Color(0xff2e7d32),
+                  disabledGradientBeginColor: Color(0xffe0e0e0),
+                  disabledGradientEndColor: Color(0xffc8c8c8),
                 ),
                 CheckboxListTile(
                   title: const Text('Default home?'),
@@ -121,12 +133,20 @@ class Device extends StatefulWidget {
     required this.subTitle,
     required this.icon,
     required this.color,
+    required this.gradientBeginColor,
+    required this.gradientEndColor,
+    required this.disabledGradientBeginColor,
+    required this.disabledGradientEndColor,
   });
 
   final String title;
   final String subTitle;
   final IconData icon;
   final Color color;
+  final Color gradientBeginColor;
+  final Color gradientEndColor;
+  final Color disabledGradientBeginColor;
+  final Color disabledGradientEndColor;
 
   @override
   State<Device> createState() => _DeviceState();
@@ -135,20 +155,19 @@ class Device extends StatefulWidget {
 class _DeviceState extends State<Device> {
   bool _isEnabled = true;
 
+  List<Color> get gradientColors {
+    if (_isEnabled) {
+      return [widget.gradientBeginColor, widget.gradientEndColor];
+    } else {
+      return [
+        widget.disabledGradientBeginColor,
+        widget.disabledGradientEndColor
+      ];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Text(
-      widget.title,
-      style: TextStyle(
-          color: _isEnabled ? Colors.white : Colors.black54,
-          fontSize: 25,
-          fontWeight: FontWeight.w600),
-    );
-    Text(
-      widget.subTitle,
-      style: TextStyle(
-          color: _isEnabled ? Colors.white : Colors.black54, fontSize: 20),
-    );
     return Container(
       height: 180.0,
       width: 180.0,
@@ -156,17 +175,11 @@ class _DeviceState extends State<Device> {
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: _isEnabled
-            ? const LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [Color(0xffb3e5fc), Color(0xff0288d1)],
-              )
-            : const LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [Color(0xffffffff), Color(0xfffaf9f6)],
-              ),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: gradientColors,
+        ),
         boxShadow: const <BoxShadow>[
           BoxShadow(
             blurRadius: 20,

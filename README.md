@@ -1,4 +1,4 @@
-# Smart Home
+# smarthome
 
 A new Flutter project.
 

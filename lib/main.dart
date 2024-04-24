@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
           appBar: AppBar(
             title: const Text('Smart Home'),
+            backgroundColor: Colors.blueAccent,
           ),
           body: SingleChildScrollView(
             child: Column(
